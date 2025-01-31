@@ -2,7 +2,6 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { sectionSchema } from "../schemas/courses";
 import { z } from "zod";
 import {
   Form,
@@ -19,13 +18,13 @@ import { actionToast } from "@/hooks/use-toast";
 import { CourseSectionStatus, courseSectionStatuses } from "@/drizzle/schema";
 import {
   Select,
-  SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
+  SelectContent,
 } from "@/components/ui/select";
-import { createSection } from "../actions/sections";
-import { updateSection } from "../db/sections";
+import { createSection, updateSection } from "../actions/sections";
+import { sectionSchema } from "../schemas/courses";
 
 export function SectionForm({
   section,
@@ -81,7 +80,6 @@ export function SectionForm({
               </FormItem>
             )}
           />
-
           <FormField
             control={form.control}
             name="status"
@@ -110,7 +108,6 @@ export function SectionForm({
             )}
           />
         </div>
-
         <div className="self-end">
           <Button disabled={form.formState.isSubmitting} type="submit">
             Save
