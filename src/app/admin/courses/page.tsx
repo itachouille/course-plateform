@@ -1,7 +1,7 @@
 import { PageHeader } from "@/components/PageHeader";
 import { Button } from "@/components/ui/button";
 import { db } from "@/drizzle/db";
-import { CourseTable } from "@/features/courses/components/CourseTable";
+import { CourseTable } from "@/features/courses/_components/CourseTable";
 import { getCourseGlobalTag } from "@/features/courses/db/cache/courses";
 import { cacheTag } from "next/dist/server/use-cache/cache-tag";
 import {
@@ -12,6 +12,9 @@ import {
 } from "@/drizzle/schema";
 import Link from "next/link";
 import { asc, countDistinct, eq } from "drizzle-orm";
+import { getUserCourseAccessGlobalTag } from "@/features/courses/db/cache/userCourseAccess";
+import { getCourseSectionGlobalTag } from "@/features/coursesSections/db/cache";
+import { getLessonGlobalTag } from "@/features/lessons/db/cache/lessons";
 
 export default async function CoursesPage() {
   const courses = await getCourses();
@@ -31,13 +34,18 @@ export default async function CoursesPage() {
 
 async function getCourses() {
   "use cache";
-  cacheTag(getCourseGlobalTag());
+  cacheTag(
+    getCourseGlobalTag(),
+    getUserCourseAccessGlobalTag(),
+    getCourseSectionGlobalTag(),
+    getLessonGlobalTag()
+  );
 
   return db
     .select({
       id: DbCourseTable.id,
       name: DbCourseTable.name,
-      sectionCount: countDistinct(CourseSectionTable),
+      sectionsCount: countDistinct(CourseSectionTable),
       lessonsCount: countDistinct(LessonTable),
       studentsCount: countDistinct(UserCourseAccessTable),
     })

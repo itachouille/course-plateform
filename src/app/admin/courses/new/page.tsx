@@ -1,5 +1,5 @@
 import { PageHeader } from "@/components/PageHeader";
-import { CourseForm } from "@/features/courses/components/CourseForm";
+import { CourseForm } from "@/features/courses/_components/CourseForm";
 
 export default function NewCoursePage() {
   return (
