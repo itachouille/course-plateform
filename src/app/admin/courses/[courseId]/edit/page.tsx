@@ -10,6 +10,8 @@ import { getCourseIdTag } from "@/features/courses/db/cache/courses";
 import { SectionFormDialog } from "@/features/coursesSections/_components/SectionFormDialog";
 import { SortableSectionList } from "@/features/coursesSections/_components/SortableSectionList";
 import { getCourseSectionCourseTag } from "@/features/coursesSections/db/cache";
+import { LessonFormDialog } from "@/features/lessons/_components/LessonFormDialog";
+import { SortableLessonList } from "@/features/lessons/_components/SortableLessonList";
 import { getLessonCourseTag } from "@/features/lessons/db/cache/lessons";
 import { cn } from "@/lib/utils";
 import { asc, eq } from "drizzle-orm";
@@ -68,7 +70,7 @@ export default async function EditCoursePage({
                 >
                   {section.status === "private" && <EyeClosed />} {section.name}
                 </CardTitle>
-                {/*   <LessonFormDialog
+                <LessonFormDialog
                   defaultSectionId={section.id}
                   sections={course.courseSections}
                 >
@@ -77,13 +79,13 @@ export default async function EditCoursePage({
                       <PlusIcon /> New Lesson
                     </Button>
                   </DialogTrigger>
-                </LessonFormDialog> */}
+                </LessonFormDialog>
               </CardHeader>
               <CardContent>
-                {/*   <SortableLessonList
+                <SortableLessonList
                   sections={course.courseSections}
                   lessons={section.lessons}
-                /> */}
+                />
               </CardContent>
             </Card>
           ))}
