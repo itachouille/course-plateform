@@ -8,10 +8,8 @@ import { CourseSectionTable, CourseTable, LessonTable } from "@/drizzle/schema";
 import { CourseForm } from "@/features/courses/_components/CourseForm";
 import { getCourseIdTag } from "@/features/courses/db/cache/courses";
 import { SectionFormDialog } from "@/features/coursesSections/_components/SectionFormDialog";
+import { SortableSectionList } from "@/features/coursesSections/_components/SortableSectionList";
 import { getCourseSectionCourseTag } from "@/features/coursesSections/db/cache";
-//import { SortableSectionList } from "@/features/courseSections/components/SortableSectionList";
-//import { LessonFormDialog } from "@/features/lessons/components/LessonFormDialog";
-//import { SortableLessonList } from "@/features/lessons/components/SortableLessonList";
 import { getLessonCourseTag } from "@/features/lessons/db/cache/lessons";
 import { cn } from "@/lib/utils";
 import { asc, eq } from "drizzle-orm";
@@ -50,13 +48,15 @@ export default async function EditCoursePage({
               </SectionFormDialog>
             </CardHeader>
             <CardContent>
-              {/*  <SortableSectionList
+              <SortableSectionList
                 courseId={course.id}
                 sections={course.courseSections}
-              /> */}
+              />
             </CardContent>
           </Card>
+
           <hr className="my-2" />
+
           {course.courseSections.map((section) => (
             <Card key={section.id}>
               <CardHeader className="flex items-center flex-row justify-between gap-4">
