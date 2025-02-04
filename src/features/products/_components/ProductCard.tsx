@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/card";
 import { formatPrice } from "@/lib/formatters";
 import { getUserCoupon } from "@/lib/userCountryHeader";
+//import { getUserCoupon } from "@/lib/userCountryHeader";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
@@ -29,7 +30,13 @@ export function ProductCard({
   return (
     <Card className="overflow-hidden flex flex-col w-full max-w-[500px] mx-auto">
       <div className="relative aspect-video w-full">
-        <Image src={imageUrl} alt={name} fill className="object-cover" />
+        <Image
+          src={imageUrl}
+          alt={name}
+          width={400}
+          height={200}
+          className="object-contain"
+        />
       </div>
       <CardHeader className="space-y-0">
         <CardDescription>
