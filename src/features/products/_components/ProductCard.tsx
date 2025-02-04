@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/card";
 import { formatPrice } from "@/lib/formatters";
 import { getUserCoupon } from "@/lib/userCountryHeader";
-//import { getUserCoupon } from "@/lib/userCountryHeader";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense } from "react";
