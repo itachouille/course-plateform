@@ -2,11 +2,10 @@
 
 import { z } from "zod";
 import { getCurrentUser } from "@/services/clerk";
-import { sectionSchema } from "../schemas/courses";
 import {
-  canCreateCoursesSections,
-  canDeleteCoursesSections,
-  canUpdateCoursesSections,
+  canCreateCourseSections,
+  canDeleteCourseSections,
+  canUpdateCourseSections,
 } from "../permissions/sections";
 import {
   getNextCourseSectionOrder,
@@ -15,6 +14,7 @@ import {
   deleteSection as deleteSectionDb,
   updateSectionOrders as updateSectionOrdersDb,
 } from "../db/sections";
+import { sectionSchema } from "../schemas/courses";
 
 export async function createSection(
   courseId: string,
@@ -22,7 +22,7 @@ export async function createSection(
 ) {
   const { success, data } = sectionSchema.safeParse(unsafeData);
 
-  if (!success || !canCreateCoursesSections(await getCurrentUser())) {
+  if (!success || !canCreateCourseSections(await getCurrentUser())) {
     return { error: true, message: "There was an error creating your section" };
   }
 
@@ -39,7 +39,7 @@ export async function updateSection(
 ) {
   const { success, data } = sectionSchema.safeParse(unsafeData);
 
-  if (!success || !canUpdateCoursesSections(await getCurrentUser())) {
+  if (!success || !canUpdateCourseSections(await getCurrentUser())) {
     return { error: true, message: "There was an error updating your section" };
   }
 
@@ -49,7 +49,7 @@ export async function updateSection(
 }
 
 export async function deleteSection(id: string) {
-  if (!canDeleteCoursesSections(await getCurrentUser())) {
+  if (!canDeleteCourseSections(await getCurrentUser())) {
     return { error: true, message: "Error deleting your section" };
   }
 
@@ -61,7 +61,7 @@ export async function deleteSection(id: string) {
 export async function updateSectionOrders(sectionIds: string[]) {
   if (
     sectionIds.length === 0 ||
-    !canUpdateCoursesSections(await getCurrentUser())
+    !canUpdateCourseSections(await getCurrentUser())
   ) {
     return { error: true, message: "Error reordering your sections" };
   }
