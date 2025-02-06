@@ -38,7 +38,7 @@ export function SortableLessonList({
           >
             <div
               className={cn(
-                "contents",
+                "flex items-center gap-1",
                 lesson.status === "private" && "text-muted-foreground"
               )}
             >
