@@ -95,7 +95,7 @@ async function SuspenseBoundary({ purchaseId }: { purchaseId: string }) {
           </div>
           <div>
             <label className="text-sm text-muted-foreground">Seller</label>
-            <div>Web Dev Simplified</div>
+            <div>Course Plateform</div>
           </div>
         </CardContent>
         <CardFooter className="grid grid-cols-2 gap-y-4 gap-x-8 border-t pt-4">

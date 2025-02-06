@@ -1,4 +1,3 @@
-import { env } from "@/data/env/server";
 import { deleteUser, insertUser, updateUser } from "@/features/users/db/users";
 import { syncClerkUserMetadata } from "@/services/clerk";
 import { WebhookEvent } from "@clerk/nextjs/server";
@@ -20,7 +19,7 @@ export async function POST(req: Request) {
   const payload = await req.json();
   const body = JSON.stringify(payload);
 
-  const wh = new Webhook(env.CLERK_WEBHOOK_SECRET);
+  const wh = new Webhook(process.env.CLERK_WEBHOOK_SECRET!);
   let event: WebhookEvent;
 
   try {

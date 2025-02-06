@@ -29,13 +29,7 @@ export function ProductCard({
   return (
     <Card className="overflow-hidden flex flex-col w-full max-w-[500px] mx-auto">
       <div className="relative aspect-video w-full">
-        <Image
-          src={imageUrl}
-          alt={name}
-          width={400}
-          height={200}
-          className="object-contain"
-        />
+        <Image src={imageUrl} alt={name} fill className="object-cover" />
       </div>
       <CardHeader className="space-y-0">
         <CardDescription>
